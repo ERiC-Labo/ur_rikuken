@@ -18,9 +18,9 @@ int main(int argc, char** argv){
     MYUR myur("manipulator");
 
     //moveit::planning_interface::MoveGroupInterface move_group("manipulator");
-    myur.print_vector(myur.move_group->getCurrentJointValues());
+    //myur.print_vector(myur.move_group->getCurrentJointValues());
     
-    myur.end_pose();
+    //myur.end_pose();
 
     myur.bit_move_x(-0.15);
     
