@@ -37,18 +37,18 @@ void MYUR::bit_move_x(double x_value){
     MYUR::end_pose();
 }
 
-void MYUR::bit_move_y(double y_value){
-    moveit::planning_interface::MoveGroupInterface move_group("manipulator");
-    std::vector<geometry_msgs::Pose> waypoints;
-    geometry_msgs::Pose wpose = move_group.getCurrentPose().pose;
-    wpose.position.y += y_value;
-    waypoints.push_back(wpose);
-    moveit_msgs::RobotTrajectory trajectory;
-    const double jump_threshold = 0.0;
-    const double eef_step = 0.01;
-    double fraction = move_group.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
-    move_group.execute(trajectory);
-}
+// void MYUR::bit_move_y(double y_value){
+//     moveit::planning_interface::MoveGroupInterface move_group("manipulator");
+//     std::vector<geometry_msgs::Pose> waypoints;
+//     geometry_msgs::Pose wpose = move_group.getCurrentPose().pose;
+//     wpose.position.y += y_value;
+//     waypoints.push_back(wpose);
+//     moveit_msgs::RobotTrajectory trajectory;
+//     const double jump_threshold = 0.0;
+//     const double eef_step = 0.01;
+//     double fraction = move_group.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
+//     move_group.execute(trajectory);
+// }
 
 // void MYUR::bit_move_z(double z_value){
 //     moveit::planning_interface::MoveGroupInterface move_group("manipulator");
