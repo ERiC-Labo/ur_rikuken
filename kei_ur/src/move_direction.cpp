@@ -15,10 +15,10 @@ int main(int argc, char** argv){
     ros::AsyncSpinner spinner(1);
     spinner.start();
 
-    MYUR myur;
+    MYUR myur("manipulator");
 
-    moveit::planning_interface::MoveGroupInterface move_group("manipulator");
-    myur.print_vector(move_group.getCurrentJointValues());
+    //moveit::planning_interface::MoveGroupInterface move_group("manipulator");
+    myur.print_vector(myur.move_group->getCurrentJointValues());
     
     myur.end_pose();
 

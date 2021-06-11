@@ -11,5 +11,7 @@ public:
     void bit_move_x(double x_value);
     void bit_move_y(double y_value);
     void bit_move_z(double z_value);
+    MYUR(std::string);
+    moveit::planning_interface::MoveGroupInterface *move_group;
 };  
 #endif
