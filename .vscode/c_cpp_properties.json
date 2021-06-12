@@ -22,8 +22,12 @@
                 "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/fmauch_universal_robot/ur_kinematics/include/**",
                 "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/Universal_Robots_ROS_Driver/ur_robot_driver/include/**",
                 "/usr/include/**",
-                "/opt/ros/melodic/include",
-                "${workspaceFolder}/kei_ur/include"
+                "/opt/ros/noetic/include",
+                "${workspaceFolder}/kei_ur/include",
+                "/usr/include/opencv4",
+                "${workspaceFolder}/prepare_pack/include",
+                "/home/ericlab/ros_package/oshieru_ws/devel/include",
+                "/usr/include/sdformat-9.5/sdf"
             ],
             "name": "ROS"
         }

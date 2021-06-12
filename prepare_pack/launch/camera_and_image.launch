@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="output_topic_name" default="/shinya"/>
+    <arg name="image_topic_name" default="/camera/image_raw"/>
+    <arg name="camera_topic_name" default="/camera/camera_info"/>
+    
+    <node name="node_name" pkg="prepare_pack" type="camera_and_image" output="screen">
+        <param name="camera_topic_name" value="$(arg camera_topic_name)"/>
+        <param name="image_topic_name" value="$(arg image_topic_name)"/>
+        <param name="output_topic_name" value="$(arg output_topic_name)"/>
+    </node>
+    
+</launch>
