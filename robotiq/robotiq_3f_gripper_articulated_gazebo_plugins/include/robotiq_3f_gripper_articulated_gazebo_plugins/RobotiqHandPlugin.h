@@ -34,6 +34,7 @@
 #include <gazebo/common/Plugin.hh>
 #include <gazebo/common/Time.hh>
 #include <gazebo/physics/physics.hh>
+#include <sdf.hh>
 
 /// \brief A plugin that implements the Robotiq 3-Finger Adaptative Gripper.
 /// The plugin exposes the next parameters via SDF tags:
@@ -230,7 +231,7 @@ class RobotiqHandPlugin : public gazebo::ModelPlugin
   private: robotiq_3f_gripper_articulated_msgs::Robotiq3FGripperRobotOutput userHandleCommand;
 
   /// \brief gazebo world update connection.
-  private: gazebo::event::ConnectionPtr updateConnection;
+  private: gazebo::event::Connection updateConnection;
 
   /// \brief keep track of controller update sim-time.
   private: gazebo::common::Time lastControllerUpdateTime;

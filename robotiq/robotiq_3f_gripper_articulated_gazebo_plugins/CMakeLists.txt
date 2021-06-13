@@ -20,11 +20,11 @@ catkin_package(
    DEPENDS gazebo_plugins gazebo_ros robotiq_3f_gripper_articulated_msgs roscpp
 )
 
-add_library(RobotiqHandPlugin src/RobotiqHandPlugin.cpp)
+#[[add_library(RobotiqHandPlugin src/RobotiqHandPlugin.cpp)
 set_target_properties(RobotiqHandPlugin PROPERTIES LINK_FLAGS "${ld_flags}")
 set_target_properties(RobotiqHandPlugin PROPERTIES COMPILE_FLAGS "${cxx_flags}")
 target_link_libraries(RobotiqHandPlugin ${catkin_LIBRARIES})
-add_dependencies(RobotiqHandPlugin robotiq_3f_gripper_articulated_msgs_gencpp)
+add_dependencies(RobotiqHandPlugin robotiq_3f_gripper_articulated_msgs_gencpp)]]
 
-install(TARGETS RobotiqHandPlugin DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}/${PROJECT_NAME}/plugins/)
+#install(TARGETS RobotiqHandPlugin DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}/${PROJECT_NAME}/plugins/)
 

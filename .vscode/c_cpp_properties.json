@@ -1,6 +1,7 @@
 {
     "configurations": [
         {
+<<<<<<< HEAD
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
@@ -12,6 +13,37 @@
             "cStandard": "c17",
             "cppStandard": "c++20",
             "intelliSenseMode": "linux-gcc-x64"
+=======
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/ericlab/ros_package/ros_ws/devel/include/**",
+                "/opt/ros/melodic/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/Universal_Robots_ROS_Driver/controller_stopper/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/gazebo_camera/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/kei_ur/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/robotiq/robotiq_2f_gripper_action_server/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/robotiq/robotiq_2f_gripper_control/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/robotiq/robotiq_3f_gripper_articulated_gazebo_plugins/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/robotiq/robotiq_3f_gripper_control/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/robotiq/robotiq_ethercat/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/robotiq/robotiq_ft_sensor/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/Universal_Robots_ROS_Driver/ur_calibration/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/Universal_Robots_ROS_Driver/ur_controllers/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/fmauch_universal_robot/ur_kinematics/include/**",
+                "/home/ericlab/ros_package/ros_ws/src/ur_rikuken/Universal_Robots_ROS_Driver/ur_robot_driver/include/**",
+                "/usr/include/**",
+                "/opt/ros/noetic/include",
+                "${workspaceFolder}/kei_ur/include",
+                "/usr/include/opencv4",
+                "${workspaceFolder}/prepare_pack/include",
+                "/home/ericlab/ros_package/oshieru_ws/devel/include",
+                "/usr/include/sdformat-9.5/sdf"
+            ],
+            "name": "ROS"
+>>>>>>> ffc61177a4cbcb05a3cbba8044534fe2e052611e
         }
     ],
     "version": 4
