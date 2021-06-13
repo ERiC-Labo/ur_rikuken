@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+     <remap from="/follow_joint_trajectory" to="/scaled_pos_joint_traj_controller/follow_joint_trajectory"/>
+   <include file="$(find ur3_e_moveit_config)/launch/move_group.launch">
+    <arg name="limited" default="true"/>
+    <arg name="debug" default="false" />
+  </include>
+   <arg name="command_args" value="-d $(find ur3_e_moveit_config)/launch/moveit.rviz" />
+  <node name="$(anon rviz)" launch-prefix="" pkg="rviz" type="rviz" respawn="false"
+	args="$(arg command_args)" output="screen">
+    <rosparam command="load" file="$(find ur3_e_moveit_config)/config/kinematics.yaml"/>
+  </node>
+</launch>

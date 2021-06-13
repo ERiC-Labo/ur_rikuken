@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "ostream": "cpp"
+    },
+    "python.autoComplete.extraPaths": [
+        "/home/ericlab/ros_package/ur_ws/devel/lib/python2.7/dist-packages",
+        "/opt/ros/melodic/lib/python2.7/dist-packages"
+    ]
+}

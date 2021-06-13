@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="rvizconfig" default="$(find prepare_pack)/rviz/first.rviz"/>
+    <arg name="source_link" default="base_link"/>
+    <arg name="target_link" default="rikuken_tf"/>
+    
+    <node name="node_name" pkg="prepare_pack" type="listener_tf"  output="screen">
+        <param name="source_link" value="$(arg source_link)"/>
+        <param name="target_link" value="$(arg target_link)"/>
+    </node>
+    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(arg rvizconfig)"/>
+    
+</launch>
