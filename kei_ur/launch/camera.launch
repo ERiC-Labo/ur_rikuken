@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="output_topic_name" default="/output_topic_name"/>
+    <arg name="image_topic_name" default="/camera/image_raw"/>
+    <arg name="camera_topic_name" default="/camera/camera_info"/>
+
+    <arg name="mode" default="true"/>
+    <group if="$(arg mode)">
+      <node pkg="kei_ur" type="camera" name="camera" output="screen">
+         <param name="output_topic_name" value="$(arg output_topic_name)"/>
+         <param name="image_topic_name" value="$(arg image_topic_name)"/>
+         <param name="camera_topic_name" value="$(arg camera_topic_name)"/> 
+      </node>
+    </group>
+    <!-- <group unless="(arg mode)">
+      <node pkg="kei_ur" type="camera_once" name="camera_once" output="screen">
+         <param name="output_topic_name" value="$(arg output_topic_name)"/>
+         <param name="image_topic_name" value="$(arg image_topic_name)"/>
+         <param name="camera_topic_name" value="$(arg camera_topic_name)"/> 
+      </node>
+    </group> -->
+
+</launch>

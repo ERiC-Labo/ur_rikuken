@@ -27,7 +27,8 @@
                 "/usr/include/opencv4",
                 "${workspaceFolder}/prepare_pack/include",
                 "/home/ericlab/ros_package/oshieru_ws/devel/include",
-                "/usr/include/sdformat-9.5/sdf"
+                "/usr/include/sdformat-9.5/sdf",
+                "/opt/ros/melodic/include"
             ],
             "name": "ROS"
         }

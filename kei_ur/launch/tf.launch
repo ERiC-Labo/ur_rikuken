@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="rvizconfig" default="$(find kei_ur)/rviz/tf.rviz"/>
+    
+    <node pkg="kei_ur" type="tf_publish" name="tf_publish" output="screen">
+        
+    </node>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rvizconfig)"/>
+</launch>

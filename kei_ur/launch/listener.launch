@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="rvizconfig" default="$(find kei_ur)/rviz/tf.rviz"/>
+    
+    <node pkg="kei_ur" type="tf_publish" name="tf_publish" output="screen">
+        
+    </node>
+
+    <arg name="source_link" default="static_tf"/>
+    <arg name="target_link" default="dynamic_tf"/>
+    <node pkg="kei_ur" type="tf_listen" name="tf_listen" output="screen" >
+        <param name="source_link" value="$(arg source_link)"/>
+        <param name="target_link" value="$(arg target_link)"/>
+    </node>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rvizconfig)"/>
+</launch>

@@ -10,6 +10,11 @@ project(kei_ur)
 find_package(catkin REQUIRED COMPONENTS
   moveit_ros_planning_interface
   roscpp
+  cv_bridge
+  message_filters
+  tf2
+  tf
+  tf2_ros
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,9 +109,10 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
    INCLUDE_DIRS include
    LIBRARIES kei_ur
-   CATKIN_DEPENDS moveit_ros_planning_interface roscpp
+   CATKIN_DEPENDS moveit_ros_planning_interface roscpp cv_bridge message_filters
    DEPENDS system_lib
 )
+find_package(OpenCV REQUIRED)
 
 ###########
 ## Build ##
@@ -117,6 +123,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRES}
 )
 
 ## Declare a C++ library
@@ -218,3 +225,24 @@ add_library(my_ur src/my_ur.cpp)
 target_link_libraries(my_ur ${catkin_LIBRARIES})
 add_executable(move_direction src/move_direction.cpp)
 target_link_libraries(move_direction my_ur)
+
+add_executable(camera src/camera.cpp)
+target_link_libraries(camera
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
+
+add_executable(camera_once src/camera_once.cpp)
+target_link_libraries(camera_once
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
+add_executable(tf_publish src/tf_publish.cpp)
+target_link_libraries(tf_publish
+  ${catkin_LIBRARIES}
+)
+
+add_executable(tf_listen src/tf_listen.cpp)
+target_link_libraries(tf_listen
+  ${catkin_LIBRARIES}
+)
