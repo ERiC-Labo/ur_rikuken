@@ -1,23 +1,7 @@
 {
     "configurations": [
         {
-<<<<<<< HEAD
-            "name": "Linux",
-            "includePath": [
-                "${workspaceFolder}/**",
-                "/opt/ros/melodic/include",
-                "/usr/include/eigen3"
-            ],
-            "defines": [],
-            "compilerPath": "/usr/bin/gcc",
-            "cStandard": "c17",
-            "cppStandard": "c++20",
-            "intelliSenseMode": "linux-gcc-x64"
-=======
-            "browse": {
-                "databaseFilename": "",
-                "limitSymbolsToIncludedHeaders": true
-            },
+            "name": "ROS",
             "includePath": [
                 "/home/ericlab/ros_package/ros_ws/devel/include/**",
                 "/opt/ros/melodic/include/**",
@@ -42,8 +26,16 @@
                 "/home/ericlab/ros_package/oshieru_ws/devel/include",
                 "/usr/include/sdformat-9.5/sdf"
             ],
-            "name": "ROS"
->>>>>>> ffc61177a4cbcb05a3cbba8044534fe2e052611e
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "linux-gcc-x64",
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "compileCommands": "${workspaceFolder}/fmauch_universal_robot/ur3_e_moveit_config/build/compile_commands.json"
         }
     ],
     "version": 4
