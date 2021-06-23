@@ -9,8 +9,12 @@ project(pick_and_place)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  message_filters
+  cv_bridge
+  image_transport
+  tf2_ros
 )
-
+find_package(OpenCV REQUIRED)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -103,7 +107,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES pick_and_place
-#  CATKIN_DEPENDS roscpp
+  CATKIN_DEPENDS roscpp cv_bridge message_filters image_transport tf2_ros
 #  DEPENDS system_lib
 )
 
@@ -114,8 +118,9 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -202,3 +207,9 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+
+add_executable(camera_node src/camera_image.cpp src/camera_node.cpp)
+target_link_libraries(camera_node
+    ${catkin_LIBRARIES}
+    ${OpenCV_LIBRARIES})
