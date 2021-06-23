@@ -63,3 +63,18 @@ void MYUR::bit_move_z(double z_value){
     double fraction = move_group->computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
     move_group->execute(trajectory);
 }
+
+void MYUR::move_point(double x_value, double y_value, double z_value, double q_x, double q_y, double q_z, double q_w){
+    geometry_msgs::PoseStamped pose;
+    pose.header.frame_id = "base_link";
+    pose.pose.position.x = 0.2;
+    pose.pose.position.y = 0.0;
+    pose.pose.position.z = 0.1;
+    pose.pose.orientation.x = 0.0;
+    pose.pose.orientation.y = 0.707106;
+    pose.pose.orientation.z = 0.0;
+    pose.pose.orientation.w = 0.707106;
+    move_group->setPoseTarget(pose);
+    move_group->move();
+   
+}

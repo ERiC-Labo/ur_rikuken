@@ -22,6 +22,6 @@ int main(int argc, char** argv){
     
     //myur.end_pose();
 
-    myur.bit_move_x(-0.15);
+    myur.move_point(2.0, 0, 0.1, 0.0, 0.707106, 0.0, 0.707106);
     
 }

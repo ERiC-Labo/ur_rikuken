@@ -11,6 +11,7 @@ public:
     void bit_move_x(double x_value);
     void bit_move_y(double y_value);
     void bit_move_z(double z_value);
+    void move_point(double x_value, double y_value, double z_value, double q_x, double q_y, double q_z, double q_w);
     MYUR(std::string);
     moveit::planning_interface::MoveGroupInterface *move_group;
 };  
