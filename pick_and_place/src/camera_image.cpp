@@ -37,15 +37,47 @@ void camera_node::callback(sensor_msgs::CameraInfoConstPtr cam_msgs, sensor_msgs
     input_bridge = cv_bridge::toCvCopy(image_msgs, sensor_msgs::image_encodings::BGR8);
     cv_3 = cv_bridge::toCvCopy(image_msgs, sensor_msgs::image_encodings::MONO8);
 
-    cv::Mat img, out, gaussian;
+    cv::Mat img, out, gaussian, red, mask;
     input_bridge->image;
-    cv::cvtColor(input_bridge->image, img, cv::COLOR_BGR2GRAY);
-    cv::GaussianBlur(img,gaussian, cv::Size(5, 5),5);
-    cv::threshold(img, cv_3->image, 130, 255, cv::THRESH_BINARY);
+    // cv::cvtColor(input_bridge->image, img, cv::COLOR_BGR2GRAY);
+    camera_node::detect_red(input_bridge->image, mask);
+    // cv::threshold(red, cv_3->image, 130, 255, cv::THRESH_BINARY);
+    camera_node::centroid(mask);
     sensor_msgs::ImagePtr output_image = cv_bridge::CvImage(image_msgs->header, "bgr8", out).toImageMsg();
     input_bridge->image = out;
     input_bridge->encoding = "bgr8";
     operate_pub_.publish(cv_3->toImageMsg());
-    cv::imshow("windo", cv_3->image);
+    cv::imshow("windo", mask);
     cv::waitKey();
+}
+
+void camera_node::detect_red(cv::Mat img, cv::Mat &mask)
+{
+    cv::Mat mask_1;
+    cv::Mat mask_2;
+    cv::Mat hsv;
+
+    //change img from bgr to hsv
+    cv::cvtColor(img, hsv, cv::COLOR_BGR2HSV);
+
+    //define hsv limit for mask_1
+    std::vector<int> hsv_min;
+    hsv_min = {0, 127, 0};
+    std::vector<int> hsv_max;
+    hsv_max = {30, 255, 255};
+    cv::inRange(hsv, hsv_min, hsv_max, mask_1);
+
+    //define hsv lint for mask_2
+    hsv_min = {150, 127, 0};
+    hsv_max = {179, 255, 255};
+    cv::inRange(hsv, hsv_min, hsv_max, mask_2);
+
+    mask = mask_1 + mask_2;
+}
+
+void camera_node::centroid(cv::Mat mask)
+{
+    cv::Moments mu = cv::moments(mask, true);
+    cv::Point2f mc = cv::Point2f(mu.m10/mu.m00 , mu.m01/mu.m00);
+    cv::circle(mask, mc, 4, cv::Scalar(100), 2, 4);
 }

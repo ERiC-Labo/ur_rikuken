@@ -16,6 +16,8 @@ public:
     void parameter_set();
     void operate();
     void callback(sensor_msgs::CameraInfoConstPtr, sensor_msgs::ImageConstPtr);
+    void detect_red(cv::Mat img, cv::Mat &mask);
+    void centroid(cv::Mat mask);
 private:
     ros::Publisher operate_pub_;
     ros::NodeHandle nh_;
