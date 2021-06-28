@@ -4,7 +4,7 @@
     <joint name="first_joint" type="fixed">
         <parent link="world"/>
         <child link="camera_link"/>
-    <origin xyz="0.0 0.0 1.0" rpy="0.0 ${pi/2} 0.0"/>
+    <origin xyz="0.0 0.0 1.0" rpy="0.0 ${pi/2} ${pi/2}"/>
     </joint>
 
     <link name="camera_link">
@@ -30,10 +30,36 @@
         </inertial>
     </link>
 
+    <joint name="bluebox_joint" type="fixed">
+        <parent link="world"/>
+        <child link="blue_box"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+    <link name="blue_box">
+        <visual>
+            <origin xyz="0.0 0.0 0.01" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.065 0.065 0.02"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.01" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.065 0.065 0.02"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.01" rpy="0.0 0.0 0.0"/>
+            <mass value="0.200"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
+    </link>
+
     <joint name="redbox_joint" type="fixed">
         <parent link="world"/>
         <child link="red_box"/>
-    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <origin xyz="0.1 0.1 0.0" rpy="0.0 0.0 0.0"/>
     </joint>
 
     <link name="red_box">
@@ -56,13 +82,13 @@
         </inertial>
     </link>
 
-    <joint name="bluebox_joint" type="fixed">
+    <!-- <joint name="redbox_2_joint" type="fixed">
         <parent link="world"/>
-        <child link="blue_box"/>
-    <origin xyz="0.1 0.1 0.0" rpy="0.0 0.0 0.0"/>
-    </joint>
+        <child link="red_2_box"/>
+    <origin xyz="-0.1 -0.1 0.0" rpy="0.0 0.0 ${pi/4}"/>
+    </joint> -->
 
-    <link name="blue_box">
+    <!-- <link name="red_2_box">
         <visual>
             <origin xyz="0.0 0.0 0.01" rpy="0.0 0.0 0.0"/>
             <geometry>
@@ -80,7 +106,7 @@
             <mass value="0.200"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
         </inertial>
-    </link>
+    </link> -->
 
     <gazebo reference="camera_link">
         <material>Gazebo/Gray</material>
@@ -125,6 +151,12 @@
         <mu1>5</mu1>
         <mu2>5</mu2>
     </gazebo>
+
+    <!-- <gazebo reference="red_2_box">
+        <material>Gazebo/Red</material>
+        <mu1>5</mu1>
+        <mu2>5</mu2>
+    </gazebo> -->
 
     <gazebo reference="blue_box">
         <material>Gazebo/Blue</material>

@@ -17,7 +17,15 @@ public:
     void operate();
     void callback(sensor_msgs::CameraInfoConstPtr, sensor_msgs::ImageConstPtr);
     void detect_red(cv::Mat img, cv::Mat &mask);
-    void centroid(cv::Mat mask);
+    void centroid_image(cv::Mat mask);
+    void centroid_length(cv::Mat mask);
+    void pixel_to_world(cv::Point2f pixcel);
+    void multiple_matrix(std::vector<std::vector<double> > Matrix_1, std::vector<std::vector<double> > Matrix_2, std::vector<std::vector<double> > &ans);
+    void sum_matrix(std::vector<std::vector<double> > Matrix_1, std::vector<std::vector<double> > Matrix_2, std::vector<std::vector<double> > &ans);
+    void inv_matrix(std::vector<std::vector<double> > &Matrix, std::vector<std::vector<double> > &inv_matrix);
+    cv::Moments mu;
+    cv::Point2f mc;
+
 private:
     ros::Publisher operate_pub_;
     ros::NodeHandle nh_;

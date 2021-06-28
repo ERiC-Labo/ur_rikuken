@@ -1,5 +1,6 @@
 #include <camera_node.hpp>
 #include <image_transport/image_transport.h>
+#include <math.h>
 
 camera_node::camera_node()
 {
@@ -42,7 +43,8 @@ void camera_node::callback(sensor_msgs::CameraInfoConstPtr cam_msgs, sensor_msgs
     // cv::cvtColor(input_bridge->image, img, cv::COLOR_BGR2GRAY);
     camera_node::detect_red(input_bridge->image, mask);
     // cv::threshold(red, cv_3->image, 130, 255, cv::THRESH_BINARY);
-    camera_node::centroid(mask);
+    camera_node::centroid_image(mask);
+    camera_node::pixel_to_world(mc);
     sensor_msgs::ImagePtr output_image = cv_bridge::CvImage(image_msgs->header, "bgr8", out).toImageMsg();
     input_bridge->image = out;
     input_bridge->encoding = "bgr8";
@@ -75,9 +77,106 @@ void camera_node::detect_red(cv::Mat img, cv::Mat &mask)
     mask = mask_1 + mask_2;
 }
 
-void camera_node::centroid(cv::Mat mask)
+void camera_node::centroid_image(cv::Mat mask)
 {
-    cv::Moments mu = cv::moments(mask, true);
-    cv::Point2f mc = cv::Point2f(mu.m10/mu.m00 , mu.m01/mu.m00);
-    cv::circle(mask, mc, 4, cv::Scalar(100), 2, 4);
+    mu = cv::moments(mask, true);
+    mc = cv::Point2f(mu.m10/mu.m00 , mu.m01/mu.m00);
+    cv::circle(mask, camera_node::mc, 4, cv::Scalar(100), 2, 4);
+    ROS_INFO_STREAM("pixcel:" << mc.x << "  " << mc.y);
+}
+
+void camera_node::pixel_to_world(cv::Point2f pixcel)
+{
+    double w = 640;
+    double h = 360;
+    double horizontal_fov = 1.3962634;
+    std::vector<std::vector<double> > a;
+    a = {{pixcel.x - w/2},
+         {pixcel.y - h/2}};
+    std::vector<std::vector<double> > matrix_1;
+    matrix_1 = {{2*tan(horizontal_fov/2)/w, 0},
+                {0, 2*tan(horizontal_fov/2)/w}};
+    std::vector<std::vector<double> > screen_to_camera;
+    screen_to_camera = {{0.0},
+                        {0.0}};
+    multiple_matrix(matrix_1, a, screen_to_camera);
+    std::vector<std::vector<double> > R_y;
+    R_y = {{cos(M_PI_2), 0.0, sin(M_PI_2)},
+           {0.0, 1.0, 0.0},
+           {-sin(M_PI_2), 0.0, cos(M_PI_2)}};
+    std::vector<std::vector<double> > R_z;
+    R_z = {{cos(M_PI_2), -sin(M_PI_2), 0.0},
+           {sin(M_PI_2), cos(M_PI_2), 0.0},
+           {0.0, 0.0, 1.0}};
+    std::vector<std::vector<double> > R;
+    R = {{0.0, 0.0, 0.0},
+         {0.0, 0.0, 0.0},
+         {0.0, 0.0, 0.0}};
+    multiple_matrix(R_y, R_z, R);
+    std::vector<std::vector<double> > camera_pixcel;
+    camera_pixcel = {{screen_to_camera[0][0]},
+                     {screen_to_camera[1][0]},
+                     {1.0}};
+    std::vector<std::vector<double> > camera_move;
+    camera_move = {{0.0},
+                   {0.0},
+                   {1.0}};
+    std::vector<std::vector<double> > b;
+    b = {{0.0},
+         {0.0},
+         {0.0}};
+    std::vector<std::vector<double> > camera_to_world;
+    camera_to_world = {{0.0},
+         {0.0},
+         {0.0}};
+    multiple_matrix(R, camera_pixcel, b);
+    sum_matrix(b, camera_move, camera_to_world);
+    ROS_INFO_STREAM("world:" << "  " << "x:" << camera_to_world[0][0] << "y:" << camera_to_world[1][0] << "z:" << camera_to_world[2][0]);
+}
+
+void camera_node::multiple_matrix(std::vector<std::vector<double> > Matrix_1, std::vector<std::vector<double> > Matrix_2, std::vector<std::vector<double> > &ans)
+{
+    for (int i = 0; i < Matrix_1.size(); i++){
+        for (int j = 0; j < Matrix_2[i].size(); j++){
+            for(int k = 0; k < Matrix_2.size(); k++){
+                ans[i][j] += Matrix_1[i][k] * Matrix_2[k][j];
+            }
+        }
+    }
+}
+
+void camera_node::sum_matrix(std::vector<std::vector<double> > Matrix_1, std::vector<std::vector<double> > Matrix_2, std::vector<std::vector<double> > &ans)
+{
+    for(int i = 0; i < Matrix_1.size(); i++){
+        for (int j = 0; j < Matrix_1[i].size();j++){
+            ans[i][j] = Matrix_1[i][j] + Matrix_2[i][j];
+        }
+    }
+}
+
+void camera_node::inv_matrix(std::vector<std::vector<double> > &Matrix, std::vector<std::vector<double> > &inv_matrix)
+{
+    double n;
+    for(int i = 0; i < Matrix.size(); i++){
+        for(int j = 0; j < Matrix.size(); j++){
+            inv_matrix[i][j] = (i==j)?1.0:0.0;
+        }
+    }
+
+    for(int i = 0; i < Matrix.size(); i++){
+        n = 1/Matrix[i][i];
+        for(int j = 0; i < Matrix.size(); j++){
+            Matrix[i][j] *= n;
+            inv_matrix[i][j] *= n;
+        }
+        for(int j = 0; j < Matrix.size(); j++){
+            if(i != j){
+                n = Matrix[i][j];
+                for (int k = 0; k < Matrix.size(); k++){
+                    Matrix[j][k] -=Matrix[i][k]*n;
+                    inv_matrix[j][k] -= inv_matrix[i][k]*n;
+                }
+            }
+        }
+    }
 }

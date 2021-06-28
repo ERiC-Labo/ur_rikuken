@@ -25,7 +25,9 @@
                 "${workspaceFolder}/prepare_pack/include",
                 "/home/ericlab/ros_package/oshieru_ws/devel/include",
                 "/usr/include/sdformat-9.5/sdf",
-                "${workspaceFolder}/pick_and_place/include"
+                "${workspaceFolder}/pick_and_place/include",
+                "/usr/include/boost/units",
+                "/usr/include/boost/multiprecision"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
