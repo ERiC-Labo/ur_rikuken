@@ -102,23 +102,6 @@ void camera_node::pixel_to_world(cv::Point2f pixcel)
     screen_to_camera = {{0.0},
                         {0.0}};
     multiple_matrix(matrix_1, a, screen_to_camera);
-    // std::vector<std::vector<double> > R_x;
-    // R_x = {{1.0, 0.0, 0.0},
-    //        {0.0, cos(M_PI_2), -sin(M_PI_2)},
-    //        {0.0, sin(M_PI_2), cos(M_PI_2)}};
-    // std::vector<std::vector<double> > R_y;
-    // R_y = {{cos(M_PI_2), 0.0, sin(M_PI_2)},
-    //        {0.0, 1.0, 0.0},
-    //        {-sin(M_PI_2), 0.0, cos(M_PI_2)}};
-    // std::vector<std::vector<double> > R_z;
-    // R_z = {{cos(M_PI_2), -sin(M_PI_2), 0.0},
-    //        {sin(M_PI_2), cos(M_PI_2), 0.0},
-    //        {0.0, 0.0, 1.0}};
-    // std::vector<std::vector<double> > R;
-    // R = {{0.0, 0.0, 0.0},
-    //      {0.0, 0.0, 0.0},
-    //      {0.0, 0.0, 0.0}};
-    // multiple_matrix(R_y, R_x, R);
     std::vector<std::vector<double> > R;
     R = {{1.0, 0.0, 0.0},
            {0.0, cos(M_PI), -sin(M_PI)},
@@ -142,6 +125,11 @@ void camera_node::pixel_to_world(cv::Point2f pixcel)
     multiple_matrix(R, camera_pixcel, b);
     sum_matrix(b, camera_move, camera_to_world);
     ROS_INFO_STREAM("world.x:" << camera_to_world[0][0] << "world.y:" << camera_to_world[1][0] << "world.z:" << camera_to_world[2][0]);
+    float x_f = camera_to_world[0][0];
+    float y_f = camera_to_world[1][0];
+    float z_f = camera_to_world[2][0];
+    publish_box_position(x_f, y_f, z_f);
+
 }
 
 void camera_node::multiple_matrix(std::vector<std::vector<double> > Matrix_1, std::vector<std::vector<double> > Matrix_2, std::vector<std::vector<double> > &ans)
@@ -161,5 +149,23 @@ void camera_node::sum_matrix(std::vector<std::vector<double> > Matrix_1, std::ve
         for (int j = 0; j < Matrix_1[i].size();j++){
             ans[i][j] = Matrix_1[i][j] + Matrix_2[i][j];
         }
+    }
+}
+
+void camera_node::publish_box_position(float x, float y, float z)
+{
+    ros::Publisher pub = nh_.advertise<geometry_msgs::Point>("box_point", 10);
+    ros::Rate loop_rate(10);
+
+    while(ros::ok())
+    {
+        geometry_msgs::Point box_point;
+        box_point.x = x;
+        box_point.y = y;
+        box_point.z = z;
+        pub.publish(box_point);
+
+        ros::spinOnce();
+        loop_rate.sleep();
     }
 }

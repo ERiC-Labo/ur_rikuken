@@ -57,6 +57,7 @@
   <exec_depend>roscpp</exec_depend>
   <exec_depend>message_filters</exec_depend>
   <exec_depend>cv_bridge</exec_depend>
+  <depend>geometry_msgs</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

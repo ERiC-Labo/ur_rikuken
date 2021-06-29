@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   image_transport
   tf2_ros
+  geometry_msgs
 )
 find_package(OpenCV REQUIRED)
 ## System dependencies are found with CMake's conventions
@@ -213,3 +214,7 @@ add_executable(camera_node src/camera_image.cpp src/camera_node.cpp)
 target_link_libraries(camera_node
     ${catkin_LIBRARIES}
     ${OpenCV_LIBRARIES})
+
+add_executable(sub src/sub.cpp)
+target_link_libraries(sub
+    ${catkin_LIBRARIES})

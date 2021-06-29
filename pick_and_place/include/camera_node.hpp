@@ -8,6 +8,8 @@
 #include <opencv2/opencv.hpp>
 #include <cv_bridge/cv_bridge.h>
 #include <image_transport/image_transport.h>
+#include <geometry_msgs/Point.h>
+
 
 class camera_node
 {
@@ -22,6 +24,7 @@ public:
     void pixel_to_world(cv::Point2f pixcel);
     void multiple_matrix(std::vector<std::vector<double> > Matrix_1, std::vector<std::vector<double> > Matrix_2, std::vector<std::vector<double> > &ans);
     void sum_matrix(std::vector<std::vector<double> > Matrix_1, std::vector<std::vector<double> > Matrix_2, std::vector<std::vector<double> > &ans);
+    void publish_box_position(float x, float y, float z);
     cv::Moments mu;
     cv::Point2f mc;
 
