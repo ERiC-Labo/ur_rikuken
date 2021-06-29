@@ -102,18 +102,18 @@ void camera_node::pixel_to_world(cv::Point2f pixcel)
     screen_to_camera = {{0.0},
                         {0.0}};
     multiple_matrix(matrix_1, a, screen_to_camera);
-    std::vector<std::vector<double> > R_x;
-    R_x = {{1.0, 0.0, 0.0},
-           {0.0, cos(M_PI_2), -sin(M_PI_2)},
-           {0.0, sin(M_PI_2), cos(M_PI_2)}};
-    std::vector<std::vector<double> > R_y;
-    R_y = {{cos(M_PI_2), 0.0, sin(M_PI_2)},
-           {0.0, 1.0, 0.0},
-           {-sin(M_PI_2), 0.0, cos(M_PI_2)}};
-    std::vector<std::vector<double> > R_z;
-    R_z = {{cos(M_PI_2), -sin(M_PI_2), 0.0},
-           {sin(M_PI_2), cos(M_PI_2), 0.0},
-           {0.0, 0.0, 1.0}};
+    // std::vector<std::vector<double> > R_x;
+    // R_x = {{1.0, 0.0, 0.0},
+    //        {0.0, cos(M_PI_2), -sin(M_PI_2)},
+    //        {0.0, sin(M_PI_2), cos(M_PI_2)}};
+    // std::vector<std::vector<double> > R_y;
+    // R_y = {{cos(M_PI_2), 0.0, sin(M_PI_2)},
+    //        {0.0, 1.0, 0.0},
+    //        {-sin(M_PI_2), 0.0, cos(M_PI_2)}};
+    // std::vector<std::vector<double> > R_z;
+    // R_z = {{cos(M_PI_2), -sin(M_PI_2), 0.0},
+    //        {sin(M_PI_2), cos(M_PI_2), 0.0},
+    //        {0.0, 0.0, 1.0}};
     // std::vector<std::vector<double> > R;
     // R = {{0.0, 0.0, 0.0},
     //      {0.0, 0.0, 0.0},
@@ -141,7 +141,7 @@ void camera_node::pixel_to_world(cv::Point2f pixcel)
          {0.0}};
     multiple_matrix(R, camera_pixcel, b);
     sum_matrix(b, camera_move, camera_to_world);
-    ROS_INFO_STREAM("world:" << "  " << "x:" << camera_to_world[0][0] << "y:" << camera_to_world[1][0] << "z:" << camera_to_world[2][0]);
+    ROS_INFO_STREAM("world.x:" << camera_to_world[0][0] << "world.y:" << camera_to_world[1][0] << "world.z:" << camera_to_world[2][0]);
 }
 
 void camera_node::multiple_matrix(std::vector<std::vector<double> > Matrix_1, std::vector<std::vector<double> > Matrix_2, std::vector<std::vector<double> > &ans)
