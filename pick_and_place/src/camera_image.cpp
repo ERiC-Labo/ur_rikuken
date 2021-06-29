@@ -82,7 +82,7 @@ void camera_node::centroid_image(cv::Mat mask)
     mu = cv::moments(mask, true);
     mc = cv::Point2f(mu.m10/mu.m00 , mu.m01/mu.m00);
     cv::circle(mask, camera_node::mc, 4, cv::Scalar(100), 2, 4);
-    ROS_INFO_STREAM("pixcel:" << mc.x << "  " << mc.y);
+    ROS_INFO_STREAM("pixcel.x:" << mc.x << "  pixcel.y" << mc.y);
 }
 
 void camera_node::pixel_to_world(cv::Point2f pixcel)
@@ -90,16 +90,22 @@ void camera_node::pixel_to_world(cv::Point2f pixcel)
     double w = 640;
     double h = 360;
     double horizontal_fov = 1.3962634;
+    double z = 0.95;
+    double zz = 0.93;
     std::vector<std::vector<double> > a;
     a = {{pixcel.x - w/2},
          {pixcel.y - h/2}};
     std::vector<std::vector<double> > matrix_1;
-    matrix_1 = {{2*tan(horizontal_fov/2)/w, 0},
-                {0, 2*tan(horizontal_fov/2)/w}};
+    matrix_1 = {{2*zz*tan(horizontal_fov/2)/w, 0},
+                {0, 2*zz*tan(horizontal_fov/2)/w}};
     std::vector<std::vector<double> > screen_to_camera;
     screen_to_camera = {{0.0},
                         {0.0}};
     multiple_matrix(matrix_1, a, screen_to_camera);
+    std::vector<std::vector<double> > R_x;
+    R_x = {{1.0, 0.0, 0.0},
+           {0.0, cos(M_PI_2), -sin(M_PI_2)},
+           {0.0, sin(M_PI_2), cos(M_PI_2)}};
     std::vector<std::vector<double> > R_y;
     R_y = {{cos(M_PI_2), 0.0, sin(M_PI_2)},
            {0.0, 1.0, 0.0},
@@ -108,19 +114,23 @@ void camera_node::pixel_to_world(cv::Point2f pixcel)
     R_z = {{cos(M_PI_2), -sin(M_PI_2), 0.0},
            {sin(M_PI_2), cos(M_PI_2), 0.0},
            {0.0, 0.0, 1.0}};
+    // std::vector<std::vector<double> > R;
+    // R = {{0.0, 0.0, 0.0},
+    //      {0.0, 0.0, 0.0},
+    //      {0.0, 0.0, 0.0}};
+    // multiple_matrix(R_y, R_x, R);
     std::vector<std::vector<double> > R;
-    R = {{0.0, 0.0, 0.0},
-         {0.0, 0.0, 0.0},
-         {0.0, 0.0, 0.0}};
-    multiple_matrix(R_y, R_z, R);
+    R = {{1.0, 0.0, 0.0},
+           {0.0, cos(M_PI), -sin(M_PI)},
+           {0.0, sin(M_PI), cos(M_PI)}};
     std::vector<std::vector<double> > camera_pixcel;
     camera_pixcel = {{screen_to_camera[0][0]},
                      {screen_to_camera[1][0]},
-                     {1.0}};
+                     {zz}};
     std::vector<std::vector<double> > camera_move;
     camera_move = {{0.0},
                    {0.0},
-                   {1.0}};
+                   {z}};
     std::vector<std::vector<double> > b;
     b = {{0.0},
          {0.0},
@@ -150,33 +160,6 @@ void camera_node::sum_matrix(std::vector<std::vector<double> > Matrix_1, std::ve
     for(int i = 0; i < Matrix_1.size(); i++){
         for (int j = 0; j < Matrix_1[i].size();j++){
             ans[i][j] = Matrix_1[i][j] + Matrix_2[i][j];
-        }
-    }
-}
-
-void camera_node::inv_matrix(std::vector<std::vector<double> > &Matrix, std::vector<std::vector<double> > &inv_matrix)
-{
-    double n;
-    for(int i = 0; i < Matrix.size(); i++){
-        for(int j = 0; j < Matrix.size(); j++){
-            inv_matrix[i][j] = (i==j)?1.0:0.0;
-        }
-    }
-
-    for(int i = 0; i < Matrix.size(); i++){
-        n = 1/Matrix[i][i];
-        for(int j = 0; i < Matrix.size(); j++){
-            Matrix[i][j] *= n;
-            inv_matrix[i][j] *= n;
-        }
-        for(int j = 0; j < Matrix.size(); j++){
-            if(i != j){
-                n = Matrix[i][j];
-                for (int k = 0; k < Matrix.size(); k++){
-                    Matrix[j][k] -=Matrix[i][k]*n;
-                    inv_matrix[j][k] -= inv_matrix[i][k]*n;
-                }
-            }
         }
     }
 }
