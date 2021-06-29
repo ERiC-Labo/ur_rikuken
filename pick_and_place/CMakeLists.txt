@@ -215,6 +215,6 @@ target_link_libraries(camera_node
     ${catkin_LIBRARIES}
     ${OpenCV_LIBRARIES})
 
-add_executable(sub src/sub.cpp)
-target_link_libraries(sub
-    ${catkin_LIBRARIES})
+# add_executable(sub src/sub.cpp)
+# target_link_libraries(sub
+#     ${catkin_LIBRARIES})
