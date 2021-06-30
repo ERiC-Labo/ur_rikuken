@@ -27,7 +27,8 @@
                 "/usr/include/sdformat-9.5/sdf",
                 "${workspaceFolder}/pick_and_place/include",
                 "/usr/include/boost/units",
-                "/usr/include/boost/multiprecision"
+                "/usr/include/boost/multiprecision",
+                "/usr/include/eigen3"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
