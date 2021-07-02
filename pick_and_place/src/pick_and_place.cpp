@@ -14,5 +14,12 @@ int main(int argc, char **argv){
 
     ros::AsyncSpinner spinner(1);
     spinner.start();
-    mani
+    manipulator_node mn("manipulator");
+
+    geometry_msgs::Point image_point;
+    image_point.x = 0.198;
+    image_point.y = 0.198;
+    image_point.z = 0.1;
+
+    mn.move_point(image_point);
 }

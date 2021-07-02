@@ -14,6 +14,10 @@ find_package(catkin REQUIRED COMPONENTS
   image_transport
   tf2_ros
   geometry_msgs
+  sensor_msgs
+  moveit_ros_planning_interface
+  actionlib_msgs
+  actionlib
 )
 find_package(OpenCV REQUIRED)
 ## System dependencies are found with CMake's conventions
@@ -106,10 +110,10 @@ find_package(OpenCV REQUIRED)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES pick_and_place
-  CATKIN_DEPENDS roscpp cv_bridge message_filters image_transport tf2_ros
-#  DEPENDS system_lib
+  INCLUDE_DIRS include
+  LIBRARIES pick_and_place
+  CATKIN_DEPENDS roscpp cv_bridge message_filters image_transport tf2_ros moveit_ros_planning_interface
+  DEPENDS system_lib
 )
 
 ###########
@@ -215,6 +219,7 @@ target_link_libraries(camera_node
     ${catkin_LIBRARIES}
     ${OpenCV_LIBRARIES})
 
-# add_executable(sub src/sub.cpp)
-# target_link_libraries(sub
-#     ${catkin_LIBRARIES})
+add_executable(pick_and_place src/manipulator_node.cpp src/pick_and_place.cpp)
+target_link_libraries(pick_and_place
+    ${catkin_LIBRARIES}
+)
