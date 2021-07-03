@@ -125,10 +125,10 @@ void camera_node::pixel_to_world(cv::Point2f pixcel)
     multiple_matrix(R, camera_pixcel, b);
     sum_matrix(b, camera_move, camera_to_world);
     ROS_INFO_STREAM("world.x:" << camera_to_world[0][0] << "world.y:" << camera_to_world[1][0] << "world.z:" << camera_to_world[2][0]);
-    float x_f = camera_to_world[0][0];
-    float y_f = camera_to_world[1][0];
-    float z_f = camera_to_world[2][0];
-    publish_box_position(x_f, y_f, z_f);
+    // float x_f = camera_to_world[0][0];
+    // float y_f = camera_to_world[1][0];
+    // float z_f = camera_to_world[2][0];
+    // publish_box_position(x_f, y_f, z_f);
 
 }
 
