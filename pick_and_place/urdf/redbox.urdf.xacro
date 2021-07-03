@@ -1,35 +1,43 @@
 <?xml version="1.0"?>
-<robot name="red_box">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="red_box" params="parent *joint_origin">
+  <material name="red">
+    <color rgba="1.0 0.0 0.0 1.0"/>
+  </material>
 
-<link name="base_link">
-  <collision>
-    <origin xyz="0 0 0.02" rpy="0 0 0"/>
-    <geometry>
-      <box size="0.1 0.075 0.025" />
-    </geometry>
-  </collision>
+    <joint name="red_box_joint" type="revolute">
+      <xacro:insert_block name="joint_origin"/>
+      <parent link="${parent}"/>
+      <child link="red_box"/>
+    </joint>
 
-  <visual>
-    <origin xyz="0 0 0.02" rpy="0 0 0"/>
-    <geometry>
-      <box size="0.1 0.075 0.025" />
-    </geometry>
-  </visual>
+    <link name="red_box">
+      <visual>
+        <origin xyz="0.0 0.0 0.01" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <box size="0.065 0.065 0.02"/>
+        </geometry>
+        <material name="red">
+          
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.01" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <box size="0.065 0.065 0.02"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0.0 0.0 0.01" rpy="0.0 0.0 0.0"/>
+        <mass value="0.200"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      </inertial>
+    </link>
 
-  <inertial>
-    <origin xyz="0 0 0.02" rpy="0 0 0" />
-    <mass value="0.05" />
-    <inertia
-      ixx="0.001" ixy="0.0"  ixz="0.0"
-      iyy="0.001" iyz="0.0"
-      izz="0.001" />
-  </inertial>
-  </link>
-
-<gazebo reference="base_link">
-  <material>Gazebo/Red</material>
-    <mu1>5</mu1>
-    <mu2>5</mu2>
-</gazebo>
-
+    <gazebo reference="red_box">
+        <material>Gazebo/Red</material>
+        <mu1>5</mu1>
+        <mu2>5</mu2>
+    </gazebo>
+  </xacro:macro>
 </robot>
