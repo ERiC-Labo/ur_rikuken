@@ -1,39 +1,39 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:macro name="pedestal" params="parent *joint_origin">
-        <material name="green">
-            <color rgba="0.0 1.0 0.0 1.0"/>
+    <xacro:macro name="bin" params="parent *joint_origin">
+        <material name="blue">
+            <color rgba="0.0 0.0 1.0 1.0"/>
         </material>
 
-        <joint name="pedestal_joint" type="fixed">
+        <joint name="bin_joint" type="fixed">
             <xacro:insert_block name="joint_origin"/>
             <parent link="${parent}"/>
-            <child link="pedestal_link"/>
+            <child link="bin_link"/>
         </joint>
 
-        <link name="pedestal_link">
+        <link name="bin_link">
             <inertial>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-                <mass value="44.391"/>
-                <inertia ixx="3.739" ixy="0.0" ixz="1.393e-10" iyy="3.739" iyz="0.0" izz="0.08"/>
+                <mass value="6.614"/>
+                <inertia ixx="0.098" ixy="0.0" ixz="0.0" iyy="0.098" iyz="0.0" izz="0.123"/>
             </inertial>
             <visual>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <cylinder radius="0.06" length="0.5"/>
+                    <mesh filename="package://pick_and_place/stl/bin.stl"/>
                 </geometry>
-                <material name="green"/>
+                <material name="blue"/>
             </visual>
             <collision>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <cylinder radius="0.06" length="0.5"/>
+                    <mesh filename="package://pick_and_place/stl/bin.stl"/>
                 </geometry>
             </collision>
         </link>
 
-        <gazebo reference="pedestal_link">
-            <material>Gazebo/Green</material>
+        <gazebo reference="bin_link">
+            <material>Gazebo/Blue</material>
         </gazebo>
     </xacro:macro>
 </robot>

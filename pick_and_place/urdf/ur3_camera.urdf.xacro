@@ -32,6 +32,8 @@
   <xacro:include filename="$(find pick_and_place)/urdf/camera.urdf.xacro"/>
   <xacro:include filename="$(find pick_and_place)/urdf/pedestal.urdf.xacro"/>
   <xacro:include filename="$(find pick_and_place)/urdf/desk.urdf.xacro"/>
+  <xacro:include filename="$(find pick_and_place)/urdf/bin.urdf.xacro"/>
+  
   
   <xacro:red_box parent="desk_link">
     <origin xyz="0.1 0.1 0.4"/>
@@ -48,4 +50,8 @@
   <xacro:desk parent="world_link">
     <origin xyz="0.3 0.0 0.0"/>
   </xacro:desk>
+
+  <xacro:bin parent="world_link">
+    <origin xyz="0.0 0.6 0.0"/>
+  </xacro:bin>
   </robot>
