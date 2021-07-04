@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="desk" params="parent *joint_origin">
+        
+        <joint name="desk_joint" type="fixed">
+            <xacro:insert_block name="joint_origin"/>
+            <parent link="${parent}"/>
+            <child link="desk_link"/>
+        </joint>
+
+        <link name="desk_link">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.0"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <mesh filename="package://pick_and_place/stl/desk.stl"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <mesh filename="package://pick_and_place/stl/desk.stl"/>
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+</robot>
