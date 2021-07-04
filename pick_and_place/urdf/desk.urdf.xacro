@@ -19,14 +19,14 @@
             <visual>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <mesh filename="package://pick_and_place/stl/desk.stl"/>
+                    <mesh filename="package://pick_and_place/dae/table.dae"/>
                 </geometry>
                 <material name="green"/>
             </visual>
             <collision>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <mesh filename="package://pick_and_place/stl/desk.stl"/>
+                    <mesh filename="package://pick_and_place/dae/table.dae"/>
                 </geometry>
             </collision>
         </link>
