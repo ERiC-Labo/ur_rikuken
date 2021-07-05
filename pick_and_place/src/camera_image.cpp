@@ -111,7 +111,7 @@ void camera_node::pixel_to_world(cv::Point2f pixcel)
                      {screen_to_camera[1][0]},
                      {zz}};
     std::vector<std::vector<double> > camera_move;
-    camera_move = {{0.0},
+    camera_move = {{0.3},
                    {0.0},
                    {z}};
     std::vector<std::vector<double> > b;
