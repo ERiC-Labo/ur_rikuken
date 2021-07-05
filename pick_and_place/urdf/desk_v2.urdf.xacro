@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:macro name="desk" params="parent *joint_origin">
+<robot name='desk'>
         <material name="green">
             <color rgba="0.0 1.0 0.0 1.0"/>
         </material>
+        <link name="world_link"/>
         <joint name="desk_joint" type="fixed">
-            <xacro:insert_block name="joint_origin"/>
-            <parent link="${parent}"/>
+            <parent link="world_link"/>
             <child link="desk_link"/>
         </joint>
 
@@ -36,5 +35,4 @@
             <mu2>10</mu2>
             <material>Gazebo/Green</material>
         </gazebo>
-    </xacro:macro>
 </robot>

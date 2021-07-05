@@ -90,8 +90,8 @@ void camera_node::pixel_to_world(cv::Point2f pixcel)
     double w = 640;
     double h = 360;
     double horizontal_fov = 1.3962634;
-    double z = 0.95;
-    double zz = 0.93;
+    double z = 1.95;
+    double zz = -1.53;
     std::vector<std::vector<double> > a;
     a = {{pixcel.x - w/2},
          {pixcel.y - h/2}};

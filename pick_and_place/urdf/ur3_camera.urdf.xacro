@@ -21,37 +21,108 @@
     transmission_hw_interface="$(arg transmission_hw_interface)"
     kinematics_file="${load_yaml('$(arg kinematics_config)')}"
   />
+
   <link name="world_link"/>
-  <joint name="ur_base_joint" type="fixed">
-    <origin xyz="0.0 0.0 0.25" rpy="0.0 0.0 0.0"/>
+  <link name="pedestal_link">
+    <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <mass value="44.391"/>
+        <inertia ixx="3.739" ixy="0.0" ixz="1.393e-10" iyy="3.739" iyz="0.0" izz="0.08"/>
+    </inertial>
+    <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+            <cylinder radius="0.06" length="0.5"/>
+        </geometry>
+        <material name="green"/>
+    </visual>
+    <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+            <cylinder radius="0.06" length="0.5"/>
+        </geometry>
+    </collision>
+  </link>
+
+  <joint name="world_joint" type="fixed">
+    <origin xyz="0.0 0.0 0.25"/>
+    <parent link="world_link"/>
+    <child link="pedestal_link"/>
+  </joint>
+  <joint name="pedestal_joint" type="fixed">
+    <origin xyz="0.0 0.0 0.25"/>
     <parent link="pedestal_link"/>
     <child link="base_link"/>
+    
   </joint>
 
-  <xacro:include filename="$(find pick_and_place)/urdf/redbox.urdf.xacro"/>
-  <xacro:include filename="$(find pick_and_place)/urdf/camera.urdf.xacro"/>
-  <xacro:include filename="$(find pick_and_place)/urdf/pedestal.urdf.xacro"/>
-  <xacro:include filename="$(find pick_and_place)/urdf/desk.urdf.xacro"/>
-  <xacro:include filename="$(find pick_and_place)/urdf/bin.urdf.xacro"/>
-  
-  
-  <xacro:red_box parent="desk_link">
-    <origin xyz="0.1 0.1 0.4"/>
-  </xacro:red_box>
+  <joint name="camera_joint" type="fixed">
+    <origin xyz="0.0 0.0 2.0" rpy="0.0 ${pi/2} ${pi/2}"/>
+    <parent link="world_link"/>
+    <child link="camera_link"/>
+</joint>
 
-  <xacro:camera parent="world_link">
-    <origin xyz="0.2 0.0 2.0" rpy="0.0 ${pi/2} ${pi/2}"/>
-  </xacro:camera>
+<link name="camera_link">
+  <visual>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <geometry>
+      <box size="0.1 0.1 0.1"/>
+    </geometry>
+    <material name="Cyan">
+      <color rgba="0.0 1.0 0.0 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <geometry>
+      <box size="0.1 0.1 0.1"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <mass value="0.5"/>
+    <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01" />
+  </inertial>
+</link>
+<gazebo reference="pedestal_link">
+  <material>Gazebo/Green</material>
+</gazebo>
 
-  <xacro:pedestal parent="world_link">
-    <origin xyz="0.0 0.0 0.25"/>
-  </xacro:pedestal>
-
-  <xacro:desk parent="world_link">
-    <origin xyz="0.3 0.0 0.0"/>
-  </xacro:desk>
-
-  <xacro:bin parent="world_link">
-    <origin xyz="0.0 0.6 0.0"/>
-  </xacro:bin>
-  </robot>
+<gazebo reference="camera_link">
+  <material>Gazebo/Gray</material>
+  <sensor type="camera" name="camera1">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+          <horizontal_fov>1.3962634</horizontal_fov>
+          <image>
+          <width>640</width>
+          <height>360</height>
+          <format>R8G8B8</format>
+          </image>
+          <clip>
+          <near>0.02</near>
+          <far>300</far>
+          </clip>
+          <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+          </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>0.0</updateRate>
+          <cameraName>camera</cameraName>
+          <imageTopicName>image_raw</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>camera_link</frameName>
+          <hackBaseline>0.07</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+      </plugin>
+  </sensor>
+</gazebo>
+</robot>

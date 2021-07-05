@@ -70,7 +70,9 @@
         "string_view": "cpp",
         "bit": "cpp",
         "forward_list": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "any": "cpp",
+        "shared_mutex": "cpp"
     },
     "python.analysis.extraPaths": [
         "/home/ericlab/ros_package/ros_ws/devel/lib/python2.7/dist-packages",
