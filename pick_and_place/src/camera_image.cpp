@@ -103,9 +103,9 @@ void camera_node::pixel_to_world(cv::Point2f pixcel)
                         {0.0}};
     multiple_matrix(matrix_1, a, screen_to_camera);
     std::vector<std::vector<double> > R;
-    R = {{1.0, 0.0, 0.0},
-           {0.0, cos(M_PI), -sin(M_PI)},
-           {0.0, sin(M_PI), cos(M_PI)}};
+    R = {{cos(M_PI), 0.0, sin(M_PI)},
+           {0.0, 1.0, 0.0},
+           {-sin(M_PI), 0.0, cos(M_PI)}};
     std::vector<std::vector<double> > camera_pixcel;
     camera_pixcel = {{screen_to_camera[0][0]},
                      {screen_to_camera[1][0]},
