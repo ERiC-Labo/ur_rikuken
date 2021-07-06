@@ -40,9 +40,9 @@ void camera_and_image::callback(sensor_msgs::CameraInfoConstPtr cam_msgs, sensor
     input_bridge->image;
     cv::cvtColor(input_bridge->image, img, cv::COLOR_BGR2GRAY);
     cv::threshold(img, cv_3->image, 130, 255, cv::THRESH_BINARY);
-    //sensor_msgs::ImagePtr output_image = cv_bridge::CvImage(image_msgs->header, "bgr8", out).toImageMsg();
-    //input_bridge->image = out;
-    //input_bridge->encoding = "bgr8";
+    sensor_msgs::ImagePtr output_image = cv_bridge::CvImage(image_msgs->header, "bgr8", out).toImageMsg();
+    input_bridge->image = out;
+    input_bridge->encoding = "bgr8";
     gray_pub_.publish(cv_3->toImageMsg());
     cv::imshow("windo", cv_3->image);
     cv::waitKey(1);

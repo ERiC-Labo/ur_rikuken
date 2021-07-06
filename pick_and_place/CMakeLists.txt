@@ -214,12 +214,17 @@ include_directories(
 # catkin_add_nosetests(test)
 
 
-add_executable(camera_node_1 src/camera_image.cpp src/camera_node.cpp)
-target_link_libraries(camera_node_1
+add_executable(camera_node src/camera_image.cpp src/camera_node.cpp)
+target_link_libraries(camera_node
     ${catkin_LIBRARIES}
     ${OpenCV_LIBRARIES})
 
 add_executable(pick_and_place src/manipulator_node.cpp src/pick_and_place.cpp)
 target_link_libraries(pick_and_place
+    ${catkin_LIBRARIES}
+)
+
+add_executable(sub src/sub.cpp)
+target_link_libraries(sub
     ${catkin_LIBRARIES}
 )

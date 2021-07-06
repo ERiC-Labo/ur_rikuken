@@ -39,7 +39,8 @@
                 "databaseFilename": "",
                 "limitSymbolsToIncludedHeaders": true
             },
-            "compileCommands": "${workspaceFolder}/fmauch_universal_robot/ur3_e_moveit_config/build/compile_commands.json"
+            "compileCommands": "${workspaceFolder}/fmauch_universal_robot/ur3_e_moveit_config/build/compile_commands.json",
+            "configurationProvider": "go2sh.cmake-integration"
         }
     ],
     "version": 4
