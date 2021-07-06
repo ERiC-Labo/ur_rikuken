@@ -26,9 +26,12 @@ public:
     void sum_matrix(std::vector<std::vector<double> > Matrix_1, std::vector<std::vector<double> > Matrix_2, std::vector<std::vector<double> > &ans);
     cv::Moments mu;
     cv::Point2f mc;
+    geometry_msgs::Point image_point;
 
 private:
     ros::Publisher operate_pub_;
+    ros::Publisher image_point_pub_;
+    ros::NodeHandle nh;
     ros::NodeHandle nh_;
     ros::NodeHandle *pnh_;
     std::string camera_topic_name_, output_topic_name_, image_topic_name_;

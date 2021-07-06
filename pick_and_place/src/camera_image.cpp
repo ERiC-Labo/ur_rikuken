@@ -19,6 +19,7 @@ void camera_node::parameter_set()
 void camera_node::operate()
 {
     operate_pub_ =nh_.advertise<sensor_msgs::Image>(output_topic_name_,10);
+    // image_point_pub_ = nh.advertise<geometry_msgs::Point>("/image_point",10);
     camera_sub_ = new message_filters::Subscriber<sensor_msgs::CameraInfo>(nh_, camera_topic_name_, 10);
     image_sub_ = new message_filters::Subscriber<sensor_msgs::Image>(nh_, image_topic_name_, 10);
     sensor_sync_ = new message_filters::Synchronizer<Sync_type>(Sync_type(10), *camera_sub_, *image_sub_);
@@ -49,6 +50,7 @@ void camera_node::callback(sensor_msgs::CameraInfoConstPtr cam_msgs, sensor_msgs
     input_bridge->image = out;
     input_bridge->encoding = "bgr8";
     operate_pub_.publish(cv_3->toImageMsg());
+    // image_point_pub_.publish(image_point);
     cv::imshow("windo", mask);
     cv::waitKey();
 }
@@ -81,7 +83,7 @@ void camera_node::centroid_image(cv::Mat mask)
 {
     mu = cv::moments(mask, true);
     mc = cv::Point2f(mu.m10/mu.m00 , mu.m01/mu.m00);
-    cv::circle(mask, camera_node::mc, 4, cv::Scalar(100), 2, 4);
+    cv::circle(mask, mc, 4, cv::Scalar(100), 2, 4);
     ROS_INFO_STREAM("pixcel.x:" << mc.x << "  pixcel.y" << mc.y);
 }
 
@@ -91,7 +93,7 @@ void camera_node::pixel_to_world(cv::Point2f pixcel)
     double h = 360;
     double horizontal_fov = 1.3962634;
     double z = 1.95;
-    double zz = -1.53;
+    double zz = 1.53;
     std::vector<std::vector<double> > a;
     a = {{pixcel.x - w/2},
          {pixcel.y - h/2}};
@@ -125,6 +127,13 @@ void camera_node::pixel_to_world(cv::Point2f pixcel)
     multiple_matrix(R, camera_pixcel, b);
     sum_matrix(b, camera_move, camera_to_world);
     ROS_INFO_STREAM("world.x:" << camera_to_world[0][0] << "world.y:" << camera_to_world[1][0] << "world.z:" << camera_to_world[2][0]);
+    // float i_x = camera_to_world[0][0];
+    // float i_y = camera_to_world[1][0];
+    // float i_z = camera_to_world[2][0];
+
+    // image_point.x = i_x;
+    // image_point.y = i_y;
+    // image_point.z = i_z;
 }
 
 void camera_node::multiple_matrix(std::vector<std::vector<double> > Matrix_1, std::vector<std::vector<double> > Matrix_2, std::vector<std::vector<double> > &ans)

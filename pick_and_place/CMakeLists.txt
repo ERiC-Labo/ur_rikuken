@@ -224,7 +224,7 @@ target_link_libraries(pick_and_place
     ${catkin_LIBRARIES}
 )
 
-# add_executable(sub src/sub.cpp)
-# target_link_libraries(sub
-#     ${catkin_LIBRARIES}
-# )
+add_executable(sub src/sub.cpp)
+target_link_libraries(sub
+    ${catkin_LIBRARIES}
+)
