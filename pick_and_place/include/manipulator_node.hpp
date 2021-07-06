@@ -16,4 +16,5 @@ public:
     void move_point(geometry_msgs::Point &image_point);
     manipulator_node(std::string);
     moveit::planning_interface::MoveGroupInterface *move_group;
+    geometry_msgs::Point box_point;
 };

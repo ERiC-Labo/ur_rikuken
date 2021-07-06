@@ -82,6 +82,24 @@ void camera_node::detect_red(cv::Mat img, cv::Mat &mask)
 
 void camera_node::centroid_image(cv::Mat mask)
 {
+    // std::vector<std::vector<cv::Point> > contours;
+    // cv::findContours(mask, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+
+    // double max_size=0;
+    // int max_id = -1;
+
+    // for(int i=0; i < contours.size();i++){
+    //     if(contours[i].size() > max_size){
+    //         max_size = contours[i].size();
+    //         max_id=1;
+    //     }
+    // }
+
+    // mu = cv::moments(contours[max_id]);
+    // mc = cv::Point2f(mu.m10/mu.m00, mu.m01/mu.m00);
+    // cv::circle(mask, mc, 4, cv::Scalar(100), 2, 4);
+    // ROS_INFO_STREAM("pixcel.x:" << mc.x << "  pixcel.y" << mc.y);
+
     mu = cv::moments(mask, true);
     mc = cv::Point2f(mu.m10/mu.m00 , mu.m01/mu.m00);
     cv::circle(mask, mc, 4, cv::Scalar(100), 2, 4);
