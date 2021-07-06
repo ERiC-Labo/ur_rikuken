@@ -24,7 +24,6 @@ public:
     void pixel_to_world(cv::Point2f pixcel);
     void multiple_matrix(std::vector<std::vector<double> > Matrix_1, std::vector<std::vector<double> > Matrix_2, std::vector<std::vector<double> > &ans);
     void sum_matrix(std::vector<std::vector<double> > Matrix_1, std::vector<std::vector<double> > Matrix_2, std::vector<std::vector<double> > &ans);
-    void publish_box_position(float x, float y, float z);
     cv::Moments mu;
     cv::Point2f mc;
 

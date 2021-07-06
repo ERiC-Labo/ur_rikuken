@@ -223,3 +223,8 @@ add_executable(pick_and_place src/manipulator_node.cpp src/pick_and_place.cpp)
 target_link_libraries(pick_and_place
     ${catkin_LIBRARIES}
 )
+
+# add_executable(sub src/sub.cpp)
+# target_link_libraries(sub
+#     ${catkin_LIBRARIES}
+# )
