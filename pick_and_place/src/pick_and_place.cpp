@@ -11,9 +11,12 @@
 int main(int argc, char **argv){
     ros::init(argc, argv, "pick_and_place");
 
-    ros::AsyncSpinner spinner(1);
+    ros::AsyncSpinner spinner(2);
     spinner.start();
     manipulator_node mn("manipulator");
+
+    ros::waitForShutdown();
+    ros::shutdown();
 
     // geometry_msgs::Point image_point;
     // image_point.x = 0.30;
