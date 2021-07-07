@@ -3,9 +3,9 @@
   <material name="red">
     <color rgba="1.0 0.0 0.0 1.0"/>
   </material>
-    <link name="world_link"/>
+    <link name="world"/>
     <joint name="red_box_joint" type="fixed">
-      <parent link="world_link"/>
+      <parent link="world"/>
       <child link="red_box"/>
     </joint>
 
