@@ -32,7 +32,7 @@
   <node pkg="gazebo_ros" type="spawn_model" name="bin" args="-file $(find pick_and_place)/urdf/bin_v2.urdf.xacro -urdf -model bin -y 0.4 -x 0.0 -z 0.0"/>
 
   <!-- spawn the camera in gazebo -->
-  <!-- <node pkg="gazebo_ros" type="spawn_model" name="camera" args="-file $(find pick_and_place)/urdf/camera_v2.urdf.xacro -urdf -model camera"/> -->
+  <!-- <node pkg="gazebo_ros" type="spawn_model" name="camera" args="-file $(find pick_and_place)/urdf/camera_v2.urdf.xacro -urdf -model camera -x 0.3 -y 0.0 -z 2.0"/> -->
   
   <!-- spawn the desk in gazebo -->
   <node pkg="gazebo_ros" type="spawn_model" name="desk" args="-file $(find pick_and_place)/urdf/desk_v2.urdf.xacro -urdf -model desk -x 0.3 -y 0.0 -z 0.0"/>

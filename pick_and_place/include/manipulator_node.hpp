@@ -13,8 +13,10 @@
 class manipulator_node
 {
 public:
-    void move_point(geometry_msgs::Point &image_point);
+    void move_point(const geometry_msgs::Point::ConstPtr& image_point);
     manipulator_node(std::string);
     moveit::planning_interface::MoveGroupInterface *move_group;
     geometry_msgs::Point box_point;
+    ros::NodeHandle nh;
+    ros::Subscriber sub_;
 };

@@ -10,16 +10,15 @@
 
 int main(int argc, char **argv){
     ros::init(argc, argv, "pick_and_place");
-    ros::NodeHandle nh;
 
     ros::AsyncSpinner spinner(1);
     spinner.start();
     manipulator_node mn("manipulator");
 
-    geometry_msgs::Point image_point;
-    image_point.x = 0.35;
-    image_point.y = -0.1;
-    image_point.z = 0.5;
+    // geometry_msgs::Point image_point;
+    // image_point.x = 0.30;
+    // image_point.y = -0.1;
+    // image_point.z = 0.8;
 
-    mn.move_point(image_point);
+    // mn.move_point(image_point);
 }
