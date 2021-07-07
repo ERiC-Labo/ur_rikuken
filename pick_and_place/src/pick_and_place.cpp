@@ -17,9 +17,9 @@ int main(int argc, char **argv){
     manipulator_node mn("manipulator");
 
     geometry_msgs::Point image_point;
-    image_point.x = 0.198;
-    image_point.y = 0.198;
-    image_point.z = 0.1;
+    image_point.x = 0.35;
+    image_point.y = -0.1;
+    image_point.z = 0.5;
 
     mn.move_point(image_point);
 }
