@@ -18,8 +18,9 @@ class Robotiq2FingerGripper:
     def __init__(self, device_id=0, stroke=0.085, comport='/dev/ttyUSB0',baud=115200):
 
         self.client = robotiq_modbus_rtu.comModbusRtu.communication()
-        
-        connected = self.client.connectToDevice(device = comport)
+        print(comport)
+        # connected = self.client.connectToDevice(device = comport)
+        connected = self.client.connectToDevice('/dev/ttyUSB0')
         if not connected:
             raise Exception("Communication with gripper %d on serial port: %s and baud rate: %d not achieved" % (device_id, comport, baud))
         
