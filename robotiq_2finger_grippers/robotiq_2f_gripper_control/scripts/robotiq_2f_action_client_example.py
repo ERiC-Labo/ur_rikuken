@@ -1,4 +1,6 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
+import sys, os
+sys.path.append(os.path.join(os.path.dirname(__file__), '../src/robotiq_2f_gripper_control'))
 """--------------------------------------------------------------------
 This Node/Script shows an example on how to use a `SimpleActionClient` instance 
 to control a Robotiq 2 Finger gripper.
