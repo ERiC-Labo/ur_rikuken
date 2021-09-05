@@ -1,0 +1,33 @@
+controller_list:
+# -------------for gazebo UR5---------------------------------
+  - name: "arm_controller"
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+
+# -------------for gazebo gripper---------------------------------
+  # - name: "command_robotiq_action"
+  # #  action_ns: follow_joint_trajectory
+  #   # type: FollowJointTrajectory
+  #   # action_ns: command_robotiq_action
+  #   type: CommandRobotiqGripper
+  #   default: true
+  #   joints:
+  #     - finger1_joint
+  # - name: "robotiq_controller"
+  #   action_ns: follow_joint_trajectory
+  #   type: FollowJointTrajectory
+  #   joints:
+  #     - finger1_joint
+  - name: "robotiq_controller"
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    joints:
+      - finger1_joint

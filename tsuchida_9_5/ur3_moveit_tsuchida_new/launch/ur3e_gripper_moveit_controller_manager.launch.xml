@@ -1,0 +1,18 @@
+<launch>
+  <arg name="execution_type" default="interpolate" />
+  
+  <arg name="sim" default="false"/>
+  
+  <!-- loads moveit_controller_manager on the parameter server which is taken as argument
+    if no argument is passed, moveit_simple_controller_manager will be set -->
+  <arg name="moveit_controller_manager" default="moveit_simple_controller_manager/MoveItSimpleControllerManager" />
+  <param name="moveit_controller_manager" value="$(arg moveit_controller_manager)"/>
+
+  <!-- loads ros_controllers to the param server -->
+  <group if="$(arg sim)">
+      <rosparam file="$(find ur3_moveit_tsuchida_new)/config/ros_controllers.yaml"/>
+  </group>
+  <group unless="$(arg sim)">
+      <rosparam file="$(find ur3_moveit_tsuchida_new)/config/ur3_gripper_camera.yaml"/>
+  </group>
+</launch>
