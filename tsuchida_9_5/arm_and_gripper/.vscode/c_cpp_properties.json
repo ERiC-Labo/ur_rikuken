@@ -1,0 +1,38 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/keisuke/rikuken/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/Universal_Robots_ROS_Driver/controller_stopper/include/**",
+        "/home/keisuke/rikuken/src/arm_and_gripper/gazebo_plugin/gazebo-pkgs/gazebo_grasp_plugin/include/**",
+        "/home/keisuke/rikuken/src/arm_and_gripper/gazebo_plugin/gazebo-pkgs/gazebo_state_plugins/include/**",
+        "/home/keisuke/rikuken/src/arm_and_gripper/gazebo_plugin/gazebo-pkgs/gazebo_test_tools/include/**",
+        "/home/keisuke/rikuken/src/arm_and_gripper/gazebo_plugin/gazebo-pkgs/gazebo_version_helpers/include/**",
+        "/home/keisuke/rikuken/src/arm_and_gripper/gazebo_plugin/gazebo-pkgs/gazebo_world_plugin_loader/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/kei_ur/include/**",
+        "/home/keisuke/rikuken/src/arm_and_gripper/gazebo_plugin/general-message-pkgs/object_msgs_tools/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/pick_and_place/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/prepare_pack/include/**",
+        "/home/keisuke/rikuken/src/arm_and_gripper/gazebo_plugin/roboticsgroup_gazebo_plugins/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/robotiq/robotiq_2f_gripper_action_server/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/robotiq/robotiq_2f_gripper_control/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/robotiq/robotiq_3f_gripper_articulated_gazebo_plugins/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/robotiq/robotiq_3f_gripper_control/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/robotiq/robotiq_ethercat/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/robotiq/robotiq_ft_sensor/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/Universal_Robots_ROS_Driver/ur_calibration/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/Universal_Robots_ROS_Driver/ur_controllers/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/fmauch_universal_robot/ur_kinematics/include/**",
+        "/home/keisuke/rikuken/src/ur_rikuken/Universal_Robots_ROS_Driver/ur_robot_driver/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

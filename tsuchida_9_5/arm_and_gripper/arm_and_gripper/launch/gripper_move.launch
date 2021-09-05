@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="value_1" default="0"/>
+    
+    <node pkg="arm_and_gripper" type="gripper_move.py" name="gripper_move" output="screen">
+        <param name="value_1" value="$(arg value_1)"/>
+    </node>
+</launch>
