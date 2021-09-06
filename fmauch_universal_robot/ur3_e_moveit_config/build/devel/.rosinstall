@@ -1,2 +1,0 @@
-- setup-file:
-    local-name: /home/tsuchida/ros_package/ur_ws/src/fmauch_universal_robot/ur3_e_moveit_config/build/devel/setup.sh
