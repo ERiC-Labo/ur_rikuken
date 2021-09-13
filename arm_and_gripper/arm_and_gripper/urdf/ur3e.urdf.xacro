@@ -317,9 +317,10 @@
         </material>
       </visual>
       <collision>
-        <origin xyz="0 0 -0.0921" rpy="${pi/2} 0 0"/>
+        <origin xyz="0.0 0.0 -0.023" rpy="0.0 0 0"/>
         <geometry>
-          <mesh filename="package://arm_and_gripper/meshes/ur3e/visual/wrist3.dae"/>
+          <!-- <mesh filename="package://arm_and_gripper/meshes/ur3e/visual/wrist3.dae"/> -->
+          <cylinder radius="0.031" length="0.032"/>
         </geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.045" length="0.05" mass="${wrist_3_mass}">

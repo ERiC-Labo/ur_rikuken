@@ -14,7 +14,7 @@
         </joint>
         <link name="body_link">
             <inertial>
-                <origin xyz="0.0 0.0 0.0" />
+                <origin xyz="0.2 0.0 0.0" />
                 <mass value="0.63387"/>
                 <inertia ixx = "0.000002" ixy = "0.000000" ixz = "0.000000"
                     iyx = "0.000000" iyy = "0.000005" iyz = "0.000000"
@@ -38,13 +38,36 @@
             <material>Gazebo/Black</material>
 
         </gazebo>
+        <!-- <joint name="finger1_joint" type="fixed">
+            <parent link="body_link"/>
+            <child link="finger_11_link"/>
+            <origin xyz="0.0 0.0 0.0" rpy="${-pi/2} ${2*pi/2} 0.0"/>
+            <<axis xyz="0 0 -1"/>
+            <limit effort="130" lower="0" upper="0.025" velocity="0.15"/> 
+        </joint> -->
         <joint name="finger1_joint" type="prismatic">
             <parent link="body_link"/>
             <child link="finger_11_link"/>
-            <origin rpy="${-pi/2} ${2*pi/2} 0.0" xyz="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="${-pi/2} ${2*pi/2} 0.0"/>
             <axis xyz="0 0 -1"/>
             <limit effort="130" lower="0" upper="0.025" velocity="0.15"/>
         </joint>
+        <!-- <joint name="finger1_joint" type="revolute">
+            <parent link="body_link"/>
+            <child link="finger_11_link"/>
+            <origin xyz="0.0 0.0 0.0" rpy="${-pi/2} ${2*pi/2} 0.0"/>
+            <axis xyz="0 0 -1"/>
+            <limit effort="130" lower="0" upper="0.025" velocity="0.15"/>
+            <limit lower="0" upper="0.7" velocity="2.0" effort="1000" />
+           
+                <limit lower="0" upper="0.7" velocity="2.0" effort="1000" />
+            <xacro:if value="true">
+            <safety_controller soft_lower_limit="${-2.0 * pi}" soft_upper_limit="${2.0 * pi}" k_position="${pi}" k_velocity="0.0"/>
+            </xacro:if>
+           
+            
+            <dynamics damping="0.0" friction="0.0"/>
+        </joint> -->
         <link name="finger_11_link">
             <inertial>
                 <origin xyz="0.0 0.0 0.0" />
@@ -58,10 +81,10 @@
                     <mesh filename="package://arm_and_gripper/meshes/finger_11.dae"/>
                 </geometry>
                 <material name="gray" />
-                <!--origin rpy="${pi/2} ${-pi/2} ${pi}" xyz="0.086 0 0"/-->
+                <!-- <origin rpy="${pi/2} ${-pi/2} ${pi}" xyz="0.086 0 0"/> -->
             </visual>
             <collision>
-                <!--origin rpy="${pi/2} ${-pi/2} ${pi}" xyz="0.086 0 0"/-->
+                <!-- <origin rpy="${pi/2} ${-pi/2} ${pi}" xyz="0.086 0 0"/> -->
                 <geometry>
                     <mesh filename="package://arm_and_gripper/meshes/finger_11.dae"/>
                 </geometry>
@@ -75,16 +98,11 @@
             <mu2 value="0.8"/>
         </gazebo>
 
-        <!-- <xacro:sensor_d435 parent="body_link">
-            <origin xyz="0.03 0.0 0.0" rpy="${-pi} ${-pi/2} 0.0"/>
-        </xacro:sensor_d435> -->
-
-        <!-- <joint name="camera_joint" type="fixed">
+        <!--joint name="finger2_joint" type="fixed">
             <parent link="body_link"/>
-            <child link="sensor_d435_link"/>
-            <origin xyz="0.0356 0.0 -0.008" rpy="0.0 ${-pi/2} ${pi/2}"/>
-        </joint> -->
-
+            <child link="finger_22_link"/>
+            <origin rpy="${-pi/2} ${2*pi/2} 0.0" xyz="0.0 0.02 0.0"/>
+        </joint-->
         <joint name="finger2_joint" type="prismatic">
             <parent link="body_link"/>
             <child link="finger_22_link"/>
@@ -94,6 +112,15 @@
             <mimic joint="finger1_joint" multiplier="1" offset="0"/>
 
         </joint>
+         <!-- <joint name="finger2_joint" type="fixed">
+            <parent link="body_link"/>
+            <child link="finger_22_link"/>
+            <origin rpy="${-pi/2} ${2*pi/2} 0.0" xyz="0.0 0.0 0.0"/>
+            <axis xyz="0 0 1"/>
+            <limit effort="130" lower="0" upper="0.025" velocity="0.15"/>
+            <mimic joint="finger1_joint" multiplier="1" offset="0"/>
+
+        </joint> -->
         <link name="finger_22_link">
             <inertial>
                 <origin xyz="0.0 0.0 0.0" />
@@ -124,6 +151,7 @@
             <mu1 value="0.8"/>
             <mu2 value="0.8"/>
         </gazebo>
+
 
 <!-- Jointのmimicの機能を使えるようにするためのプラグイン-->
 
