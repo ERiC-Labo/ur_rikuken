@@ -1,0 +1,18 @@
+<launch>
+    <arg name="sim" default="false" />
+    <arg name="limited" default="false"/>
+    <arg name="debug" default="false" />
+    <arg name="real" default="false" />
+      
+    <!-- Remap follow_joint_trajectory -->
+    <remap if="$(arg sim)" from="/follow_joint_trajectory" to="/arm_controller/follow_joint_trajectory"/>
+    <!-- <remap if="$(arg sim)" from="/gripper_cmd" to="/gripper/gripper_cmd"/> -->
+
+    <remap if="$(arg real)" flom="/follow_joint_trajectory" to="/scaled_pos_joint_traj_controller/follow_joint_trajectory" />
+    
+    <!-- Launch moveit -->
+    <include file="$(find ur3_realsense_moveit)/launch/move_group.launch">
+      <!-- <arg name="limited" default="$(arg limited)"/> -->
+      <arg name="debug" default="$(arg debug)" />
+    </include>
+  </launch>

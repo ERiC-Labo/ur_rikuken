@@ -4,6 +4,7 @@
   <!--xacro:include filename="$(find ur5_description)/urdf/ur5_joint_limited_robot.urdf.xacro" /-->
   <xacro:include filename="$(find arm_and_gripper)/urdf/ur3e_realsense_joint_limited_robot.urdf.xacro" />
   <xacro:include filename="$(find arm_and_gripper)/urdf/hande.urdf.xacro" />
+  <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>
   
   <!-- Robotiq Coupler -->
   <!--  + Height added by the coupler: 8mm -->
@@ -45,6 +46,64 @@
     <origin xyz="0 0 0.088" rpy="${pi*2} ${-4*pi/2} ${pi/2}"/>
   </xacro:robotiq_handE> 
   
+  <link name="UR3_camera_mount_upper">
+    <visual>
+      <geometry>
+        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_upper_.dae" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_upper_.dae" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.040837"/>
+      <inertia ixx="9901" ixy="0.023" ixz="-0.009" iyy="28968.111" iyz="1072.256" izz="33057.788"/>
+    </inertial>
+  </link>
+
+  <gazebo reference="UR3_camera_mount_upper">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <joint name="UR3_camera_mount_upper_joint" type="fixed">
+    <origin xyz="0.0 0.0 -0.026" rpy="0.0 0.0 0.0"/>
+    <parent link="robotiq_coupler"/>
+    <child link="UR3_camera_mount_upper"/>
+  </joint>
+
+  <link name="UR3_camera_mount_lower">
+    <visual>
+      <geometry>
+        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_lower_.dae" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_lower_.dae" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="34.379"/>
+      <inertia ixx="7481.438" ixy="0.0" ixz="0.0" iyy="27101.423" iyz="-124.277" izz="29027.607"/>
+    </inertial>
+  </link>
+
+  <gazebo reference="UR3_camera_mount_lower">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <joint name="UR3_camera_mount_lower_joint" type="fixed">
+    <origin xyz="0.0 0.0 -0.026" rpy="0.0 ${pi} 0.0"/>
+    <parent link="robotiq_coupler"/>
+    <child link="UR3_camera_mount_lower"/>
+  </joint>
+
+  <xacro:sensor_d435 parent="UR3_camera_mount_upper">
+    <origin xyz="0.0 0.04075 0.0075" rpy="0.0 ${-pi/2-pi/10} ${-pi/2}"/>
+  </xacro:sensor_d435>
+
   <!-- Gazebo FT sensor plugin -->
   <gazebo reference="wrist_3_joint">
     <provideFeedback>true</provideFeedback>
