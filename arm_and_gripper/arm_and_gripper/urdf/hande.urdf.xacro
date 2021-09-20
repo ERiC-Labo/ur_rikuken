@@ -16,9 +16,9 @@
             <inertial>
                 <origin xyz="0.2 0.0 0.0" />
                 <mass value="0.63387"/>
-                <inertia ixx = "0.000002" ixy = "0.000000" ixz = "0.000000"
-                    iyx = "0.000000" iyy = "0.000005" iyz = "0.000000"
-                    izx = "0.000000" izy = "0.000000" izz = "0.000006" />
+                <inertia ixx = "0.02" ixy = "0.000000" ixz = "0.000000"
+                    iyx = "0.000000" iyy = "0.05" iyz = "0.000000"
+                    izx = "0.000000" izy = "0.000000" izz = "0.06" />
             </inertial>
             <visual>
                 <geometry>
@@ -72,9 +72,9 @@
             <inertial>
                 <origin xyz="0.0 0.0 0.0" />
                 <mass value="0.03804"/>
-                <inertia ixx = "0.000002" ixy = "0.000000" ixz = "0.000000"
-                        iyx = "0.000000" iyy = "0.000005" iyz = "0.000000"
-                        izx = "0.000000" izy = "0.000000" izz = "0.000006" />
+                <inertia ixx = "0.02" ixy = "0.000000" ixz = "0.000000"
+                        iyx = "0.000000" iyy = "0.05" iyz = "0.000000"
+                        izx = "0.000000" izy = "0.000000" izz = "0.06" />
             </inertial>
             <visual>
                 <geometry>
@@ -126,9 +126,9 @@
                 <origin xyz="0.0 0.0 0.0" />
                 <!--origin rpy="0 0 0" xyz="-0.02262 0.00759 0.00738"/-->
                 <mass value="0.03804"/>
-                <inertia ixx = "0.000002" ixy = "0.000000" ixz = "0.000000"
-                        iyx = "0.000000" iyy = "0.000005" iyz = "0.000000"
-                        izx = "0.000000" izy = "0.000000" izz = "0.000006" />
+                <inertia ixx = "0.02" ixy = "0.000000" ixz = "0.000000"
+                        iyx = "0.000000" iyy = "0.05" iyz = "0.000000"
+                        izx = "0.000000" izy = "0.000000" izz = "0.06" />
             </inertial>
             <visual>
                 <geometry>

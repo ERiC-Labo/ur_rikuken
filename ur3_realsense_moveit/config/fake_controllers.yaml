@@ -12,6 +12,10 @@ controller_list:
     type: $(arg execution_type)
     joints:
       - finger1_joint
+  - name: fake_camera_controller
+    type: $(arg execution_type)
+    joints:
+      []
 initial:  # Define initial robot poses.
   - group: manipulator
     pose: home

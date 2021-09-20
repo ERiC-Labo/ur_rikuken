@@ -1,18 +1,35 @@
+<?xml version="1.0"?>
 <launch>
+    <remap from="arm_controller/follow_joint_trajectory" to="/scaled_pos_joint_traj_controller/follow_joint_trajectory"/>
+    <!-- <remap from="gripper/command_robotiq_action" to="/command_robotiq_action"/> -->
+    <arg name="sim" default="false"/>
+    
+    <include file="$(find ur3_realsense_moveit)/launch/move_group.launch">
+      <!-- <arg name="limited" default="true"/> -->
+      <arg name="debug" default="false" />
+      <arg name="sim" value="$(arg sim)"/>
+      
+    </include>
+    <!-- <arg name="command_args" value="-d $(find ur3_moveit_tsuchida_new)/rviz/moveit.rviz" /> -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find arm_and_gripper)/rviz/moveit.rviz" required="true" />
+</launch>
+
+<!-- <launch>
     <arg name="sim" default="false" />
     <arg name="limited" default="false"/>
     <arg name="debug" default="false" />
-    <arg name="real" default="false" />
+    <arg name="real" default="false" /> -->
       
     <!-- Remap follow_joint_trajectory -->
-    <remap if="$(arg sim)" from="/follow_joint_trajectory" to="/arm_controller/follow_joint_trajectory"/>
+    <!-- <remap if="$(arg sim)" from="/follow_joint_trajectory" to="/arm_controller/follow_joint_trajectory"/> -->
     <!-- <remap if="$(arg sim)" from="/gripper_cmd" to="/gripper/gripper_cmd"/> -->
 
-    <remap if="$(arg real)" flom="/follow_joint_trajectory" to="/scaled_pos_joint_traj_controller/follow_joint_trajectory" />
+    <!-- <remap if="$(arg real)" from="/arm_controller/follow_joint_trajectory" to="/scaled_pos_joint_traj_controller/follow_joint_trajectory" /> -->
     
     <!-- Launch moveit -->
-    <include file="$(find ur3_realsense_moveit)/launch/move_group.launch">
+    <!-- <include file="$(find ur3_realsense_moveit_1)/launch/move_group.launch"> -->
       <!-- <arg name="limited" default="$(arg limited)"/> -->
-      <arg name="debug" default="$(arg debug)" />
+      <!-- <arg name="debug" default="$(arg debug)" />
     </include>
-  </launch>
+  </launch> -->
+

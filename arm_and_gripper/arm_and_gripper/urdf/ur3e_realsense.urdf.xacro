@@ -46,7 +46,7 @@
     <origin xyz="0 0 0.088" rpy="${pi*2} ${-4*pi/2} ${pi/2}"/>
   </xacro:robotiq_handE> 
   
-  <link name="UR3_camera_mount_upper">
+  <!-- <link name="UR3_camera_mount_upper">
     <visual>
       <geometry>
         <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_upper_.dae" />
@@ -85,7 +85,7 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="34.379"/>
+      <mass value="0.034379"/>
       <inertia ixx="7481.438" ixy="0.0" ixz="0.0" iyy="27101.423" iyz="-124.277" izz="29027.607"/>
     </inertial>
   </link>
@@ -102,7 +102,7 @@
 
   <xacro:sensor_d435 parent="UR3_camera_mount_upper">
     <origin xyz="0.0 0.04075 0.0075" rpy="0.0 ${-pi/2-pi/10} ${-pi/2}"/>
-  </xacro:sensor_d435>
+  </xacro:sensor_d435> -->
 
   <!-- Gazebo FT sensor plugin -->
   <gazebo reference="wrist_3_joint">
