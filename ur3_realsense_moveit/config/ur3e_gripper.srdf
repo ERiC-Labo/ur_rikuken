@@ -43,7 +43,7 @@
         <joint name="shoulder_pan_joint" value="0"/>
         <joint name="wrist_1_joint" value="-1.5708"/>
         <joint name="wrist_2_joint" value="-1.5708"/>
-        <joint name="wrist_3_joint" value="3.1415"/>
+        <joint name="wrist_3_joint" value="-3.1415"/>
     </group_state>
     <group_state name="camera" group="manipulator">
         <joint name="elbow_joint" value="1.5708"/>
@@ -51,7 +51,7 @@
         <joint name="shoulder_pan_joint" value="0"/>
         <joint name="wrist_1_joint" value="-1.2566"/>
         <joint name="wrist_2_joint" value="-1.5708"/>
-        <joint name="wrist_3_joint" value="3.1415"/>
+        <joint name="wrist_3_joint" value="-3.1415"/>
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="end" parent_link="ee_link" group="gripper" parent_group="manipulator"/>
