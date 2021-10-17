@@ -331,12 +331,12 @@
     <link name="UR3_camera_mount_upper">
     <visual>
       <geometry>
-        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_upper_.dae" />
+        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_lower.dae" />
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_upper_.dae" />
+        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_lower.dae" />
       </geometry>
     </collision>
     <inertial>
@@ -358,12 +358,12 @@
   <link name="UR3_camera_mount_lower">
     <visual>
       <geometry>
-        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_lower_.dae" />
+        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_rectangle.dae" />
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_lower_.dae" />
+        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_rectangle.dae" />
       </geometry>
     </collision>
     <inertial>
@@ -382,8 +382,12 @@
     <child link="UR3_camera_mount_lower"/>
   </joint>
 
-  <xacro:sensor_d435 parent="UR3_camera_mount_upper">
+  <!-- <xacro:sensor_d435 parent="UR3_camera_mount_upper">
     <origin xyz="0.0 0.04075 0.0075" rpy="0.0 ${-pi/2-pi/10} ${-pi/2}"/>
+  </xacro:sensor_d435> -->
+
+  <xacro:sensor_d435 parent="UR3_camera_mount_lower">
+    <origin xyz="0.0 -0.0421 -0.0075" rpy="0.0 ${pi/2-pi/10} ${-pi/2}"/>
   </xacro:sensor_d435>
 
     <joint name="${prefix}ee_fixed_joint" type="fixed">
