@@ -331,17 +331,17 @@
     <link name="UR3_camera_mount_upper">
     <visual>
       <geometry>
-        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_lower.dae" />
+        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_lower_.dae" />
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_lower.dae" />
+        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_lower_.dae" />
       </geometry>
     </collision>
     <inertial>
       <mass value="0.040837"/>
-      <inertia ixx="9901" ixy="0.023" ixz="-0.009" iyy="28968.111" iyz="1072.256" izz="33057.788"/>
+      <inertia ixx="9901e-09" ixy="0.023e-09" ixz="-0.009e-09" iyy="28968.111e-09" iyz="1072.256e-09" izz="33057.788e-09"/>
     </inertial>
   </link>
 
@@ -358,17 +358,17 @@
   <link name="UR3_camera_mount_lower">
     <visual>
       <geometry>
-        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_rectangle.dae" />
+        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_rectangle_.dae" />
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_rectangle.dae" />
+        <mesh filename="package://arm_and_gripper/meshes/UR3_camera_mount_rectangle_.dae" />
       </geometry>
     </collision>
     <inertial>
       <mass value="0.034379"/>
-      <inertia ixx="7481.438" ixy="0.0" ixz="0.0" iyy="27101.423" iyz="-124.277" izz="29027.607"/>
+      <inertia ixx="7481.438e-09" ixy="0.0" ixz="0.0" iyy="27101.423e-09" iyz="-124.277e-09" izz="29027.607e-09"/>
     </inertial>
   </link>
 
