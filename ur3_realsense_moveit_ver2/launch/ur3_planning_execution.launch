@@ -15,7 +15,7 @@
     <!-- <remap if="$(arg sim)" from="/scaled_pos_joint_traj_controller/follow_joint_trajectory" to="/arm_controller/follow_joint_trajectory"/> -->
 
     <!-- <arg name="command_args" value="-d $(find ur3_moveit_tsuchida_new)/rviz/moveit.rviz" /> -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find arm_and_gripper)/rviz/moveit.rviz" required="true" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ur3_realsense_moveit_ver2)/rviz/moveit.rviz" required="true" />
 </launch>
 
 <!-- <launch>
