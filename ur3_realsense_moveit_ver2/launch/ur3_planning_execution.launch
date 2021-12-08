@@ -9,7 +9,7 @@
       <!-- <arg name="limited" default="true"/> -->
       <arg name="debug" default="false" />
       <arg name="sim" value="$(arg sim)"/>
-      
+
     </include>
     <remap if="$(arg real)" from="arm_controller/follow_joint_trajectory" to="/scaled_pos_joint_traj_controller/follow_joint_trajectory"/>
     <!-- <remap if="$(arg sim)" from="/scaled_pos_joint_traj_controller/follow_joint_trajectory" to="/arm_controller/follow_joint_trajectory"/> -->

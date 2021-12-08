@@ -41,6 +41,7 @@ def operate_gripper():
     # goal.speed = 0.1
     # goal.force = 5.0
     goal.trajectory.joint_names = ["finger1_joint"]
+    # goal.trajectory.joint_names = ["robotiq_85_left_knuckle_joint"]
     goal.trajectory.points = [JointTrajectoryPoint() for i in range(1)]
     goal.trajectory.points[0].positions = [1]
     goal.trajectory.points[0].time_from_start = rospy.Time(1)

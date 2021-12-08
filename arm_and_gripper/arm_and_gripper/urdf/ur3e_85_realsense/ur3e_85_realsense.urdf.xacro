@@ -44,7 +44,7 @@
   
   <!-- Attach the robotiq 85 gripper -->
   <xacro:robotiq_85_gripper prefix="" parent="robotiq_coupler" >
-    <origin xyz="0 0 0.005" rpy="0 ${-pi/2} ${pi}"/>
+    <origin xyz="0 0 0.004" rpy="0 ${-pi/2} ${pi}"/>
   </xacro:robotiq_85_gripper> 
   
 
