@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="ros_bag" type="play" name="rosbag" required="true" args="/home/ericlab/hamamoto/ur_ws/2021-12-03-12-19-37.bag.active">
+    <node name="extract" pkg="image_view" type="extract_images" respawn="false" required="true" output="screan" cwd="ROS_HOME" />
+    <remap from="image" to="/camera/color/image_raw"/>
+    <param name="sec_per_frame" value="0.01"/>
+    </node>
+</launch>

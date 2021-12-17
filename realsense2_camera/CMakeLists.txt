@@ -69,13 +69,7 @@ add_message_files(
     FILES
     IMUInfo.msg
     Extrinsics.msg
-    Metadata.msg
     )
-
-add_service_files(
-    FILES
-    DeviceInfo.srv
-)
 
 generate_messages(
     DEPENDENCIES
