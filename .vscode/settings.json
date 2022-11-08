@@ -82,5 +82,6 @@
         "/home/keisuke/rikuken/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages"
     ],
-    "C_Cpp.errorSquiggles": "Enabled"
+    "C_Cpp.errorSquiggles": "Enabled",
+    "cmake.sourceDirectory": "${workspaceFolder}/Universal_Robots_ROS_Driver/controller_stopper"
 }

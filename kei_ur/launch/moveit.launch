@@ -1,8 +1,6 @@
 <launch>
      <remap from="/follow_joint_trajectory" to="/scaled_pos_joint_traj_controller/follow_joint_trajectory"/>
-  <include file="$(find ur3_e_moveit_config)/launch/move_group.launch">
-    <arg name="limited" default="true"/>
-    <arg name="debug" default="false" />
+  <include file="$(find ur3_realsense_85_moveit)/launch/move_group.launch">
   </include>
   <arg name="command_args" value="-d $(find ur3_e_moveit_config)/launch/moveit.rviz"/>
   <node pkg="rviz" type="rviz" name="rviz" respawn="false" args="$(arg command_args)" output="screen">

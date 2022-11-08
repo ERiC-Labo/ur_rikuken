@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ur3e_gripper">
+
+  <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+
+  
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find arm_and_gripper)/urdf/ur3e_common.gazebo.xacro" />
+
+  <!-- ur3e -->
+  <xacro:include filename="$(find arm_and_gripper)/urdf/ur3_85_realsense/ur3e_realsense_mount.urdf.xacro" />
+
+  <!-- arm -->
+  <xacro:arg name="kinematics_config" default="$(find arm_and_gripper)/config/ur3_default.yaml"/>
+  <xacro:ur3e_robot prefix="" joint_limited="true"
+    shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
+    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="${pi}"
+    elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
+    wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
+    wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+    kinematics_file="${load_yaml('$(arg kinematics_config)')}"
+  />
+
+  <link name="world" />
+
+  <link name="desk_link">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${-pi/2}"/>
+      <geometry>
+        <mesh filename="package://arm_and_gripper/meshes/desk.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${-pi/2}"/>
+      <geometry>
+        <mesh filename="package://arm_and_gripper/meshes/desk.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+        <mass value="13.887"/>
+        <inertia ixx="1.050e+09" ixy="0.001" ixz="-0.009" iyy="2.018e+09" iyz="3.428e+07" izz="1.795e+09"/>
+      </inertial>
+  </link>
+
+  <joint name="world_joint" type="fixed">
+    <origin xyz="0.0 0.0 0.0"/>
+    <parent link="world"/>
+    <child link="desk_link"/>
+  </joint>
+
+  <joint name="pedestal_joint" type="fixed">
+    <origin xyz="0.15 0.0 0.7"/>
+    <parent link="desk_link"/>
+    <child link="base_link"/>
+  </joint>
+
+</robot>
